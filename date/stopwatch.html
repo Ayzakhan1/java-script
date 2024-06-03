@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            box-sizing: border-box;
+
+        }
+        body{
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: lightcoral;
+
+        }
+        .stopWatch{
+            height: 270px;
+              text-align: center;
+            border-radius: 40%;
+            box-shadow: 0 0 10px 2px lightslategray;
+            background-color: bisque;
+        }
+        .stopWatch:nth-child(1){
+            font-size: 80px;
+            font-weight: bold;
+            padding: 20px;
+        }
+        .stopWatch button{
+            padding: 10px;
+            font-weight: bold;
+            background-color: gray;
+            color: black;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="stopWatch">
+        <div class="counter">00</div>
+        <div>
+            <button onclick="startcounter()">start</button>
+            <button onclick="stopcounter()">stop</button>
+            <button onclick="resetstopwatch()">Reset</button>
+        </div>
+    </div>
+    <script>
+        const container = document.querySelector('.counter');
+         let start;
+        i = 1;
+        const counter=() => {
+            container.innerText = i;
+            i++;
+        }
+        const startcounter = ()=>{
+           start = setInterval(counter, 1000);
+        };
+
+        const stopcounter = ()=>{
+            clearInterval(start);
+        };
+        const resetstopwatch = ()=>{
+            clearInterval(start);
+            container.innerText = 0;
+             i = 1;
+        }
+    </script>
+</body>
+</html>

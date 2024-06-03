@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: rgb(13, 167, 141);
+        }
+
+        .container {
+            width: 500px;
+            box-shadow: 0 0 8px 2px rgb(70, 57, 57);
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .user {
+            display: grid;
+            grid-template-columns: 5fr 1fr;
+            gap: 10px;
+        }
+
+        .user input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid black;
+        }
+
+        .user button {
+            background-color: rgb(173, 25, 106);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .task-list {
+            margin-top: 20px;
+        }
+
+        .task-list li {
+            border-bottom: 1px solid rgb(190, 126, 126);
+            display: grid;
+            grid-template-columns: 1fr 8fr 2fr;
+            padding: 10px 0;
+        }
+
+        .task-list li button {
+            background-color: rgb(0, 217, 255);
+            padding: 5px 0;
+            border-radius: 2px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .inactive span {
+            text-decoration: line-through;
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="user">
+            <input type="text" placeholder="Add a task">
+            <button>Add Task</button>
+        </div>
+
+        <ul class="task-list">
+            <!-- <li>
+                <input type="checkbox">
+                <span>Task</span>
+                <button>Delete</button>
+            </li>
+            <li>
+                <input type="checkbox">
+                <span>Task</span>
+                <button>Delete</button>
+            </li>
+            <li>
+                <input type="checkbox">
+                <span>Task</span>
+                <button>Delete</button>
+            </li>  -->
+        </ul>
+    </div>
+
+
+    <script>
+            const inpbtn = document.querySelector('.user button');
+            const inp = document.querySelector('.user input[type="text"]');
+            const tasklist = document.querySelector('.task-list');
+
+
+            const oldData = JSON.parse(localStorage.getItem('savedata')) || [];
+           
+            let lastId = 0;
+
+            if(oldData.length != 0){
+
+            lastId = oldData[oldData.length-1].id;
+            
+                   
+          }
+           
+
+
+
+
+            //  console.log(lastId);
+            inpbtn.addEventListener('click',()=>{
+                 const value = inp.value;
+                 if(value){
+                       const taskobj = {
+                        id: lastId++,
+                        task:value,
+                        status:false
+                       }
+                  
+
+                    //  newArr.push(taskobj);
+                     
+                     oldData.push(taskobj);
+                     
+
+                  
+
+
+                 const injson = JSON.stringify(oldData);
+
+                // console.log(injson);
+                localStorage.setItem('savedata', injson);
+
+
+
+                 }
+                 else{
+
+                 alert('please enter input value')
+                  }
+           
+                showData();
+
+            });
+
+
+            const showData = ()=>{
+                const oldData_again = JSON.parse(localStorage.getItem('savedata')) || [];
+                
+                tasklist.innerHTML = '';
+
+                oldData_again.forEach((obj)=>{
+
+                    const newli = document.createElement('li');  
+                    const newinput = document.createElement('input');
+                     newinput.type = "checkbox";
+                     newinput.value = obj.id;
+                     newinput.checked = obj.status;
+
+                     if(obj.status){
+                        newli.classList.add('inactive');
+                     }
+                     newinput.addEventListener('click',()=>{
+                        const oldData_add = JSON.parse(localStorage.getItem('savedata')) || [];
+                         let index;
+                        oldData_add.forEach((val, i)=>{
+                            if(val.id == obj.id){
+                                   
+                                index = i;
+
+                            }
+                            
+                        })
+                        if(oldData_add[index].status){
+
+                            oldData_add[index].status = false;
+
+                        }
+                        else{
+                            oldData_add[index].status = true;
+                        }
+                        localStorage.setItem('savedata', JSON.stringify(oldData_add));
+
+                        showData();
+                     })
+
+                     
+                     
+                     
+                    //  newinput.addEventListener('click',()=>{
+                 
+                    //   if(newinput.checked){
+                    //       newli.classList.add('inactive');
+                    //     }
+
+                    //  else{
+
+                    //       newli.classList.remove('inactive');
+                    //     }
+                    // });
+                     
+
+
+                     const newspan = document.createElement('span');
+                     const newbtn = document.createElement('button');
+                     newbtn.innerText = "delete";
+                     newspan.innerText = obj.task;
+
+                     newbtn.addEventListener('click',()=>{
+                        // let conform =  confirm('Do you want to delete ?');
+                        
+                       if(confirm('Do you want to delete ?')){
+                        const oldData_toDelete = JSON.parse(localStorage.getItem('savedata')) || [];
+
+                        let getindexval =  oldData_toDelete.findIndex((im)=> im.id === obj.id)
+
+
+                        oldData_toDelete.splice(getindexval, 1);
+                        
+                        localStorage.setItem('savedata', JSON.stringify(oldData_toDelete));
+                       }
+                           showData();
+                     });
+
+
+                     newli.appendChild(newinput);
+                     newli.appendChild(newspan);
+                     newli.appendChild(newbtn);
+                     tasklist.appendChild(newli);
+
+                    //  console.log(tasklist )
+
+                });
+            }
+            showData();
+    
+    </script>
+        
+    <!-- <script>
+        //  const checkbox = document.querySelectorAll('.task-list input[type="checkbox"]');
+        //  const inpbtn = document.querySelector('.user button');
+        //  const inp = document.querySelector('.user input[type="text"]');
+        //  const tasklist = document.querySelector('.task-list');
+
+        //  checkbox.forEach((box)=>{
+        //    box.addEventListener('click',()=>{
+        //  const pbox  =  box.parentNode;
+        //      console.log(box.checked);
+            
+        //      if(box.checked){
+        //         pbox.classList.add('inactive');
+        //      }
+        //      else{
+        //         pbox.classList.remove('inactive');
+        //      }
+             
+        //    })
+
+        //  });
+         inpbtn.addEventListener('click',()=>{
+           const value = inp.value;
+
+           if(value){
+            const newli = document.createElement('li');
+            const newspan = document.createElement('span');
+            const newbtn = document.createElement('button');
+            newbtn.innerText = "delete";
+            const newinput = document.createElement('input');
+            newinput.type = "checkbox";
+            newspan.innerText = value;
+
+            newinput.addEventListener('click',()=>{
+                 
+                if(newinput.checked){
+                     newli.classList.add('inactive');
+                }
+                else{
+                    newli.classList.remove('inactive');
+             }
+            });
+
+
+            // console.log(newspan, newinput, newbtn);
+
+            newli.appendChild(newinput);
+            newli.appendChild(newspan);
+            newli.appendChild(newbtn);
+
+
+            //  console.log(newli);
+
+            tasklist.appendChild(newli);
+
+             
+           }
+           else{
+
+            alert('please enter input value')
+           }
+         });
+
+
+
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="">
+        <input type="text" id="name" placeholder="name">
+        <input type="text" id="age" placeholder="age">
+        <input type="text" id="contact" placeholder="contact">
+        <button onclick="adddata()" type="button">Submit</button>
+    </form> -->
+
+    <input type="password" id="d1">
+    <button id="d2">show</button>
+    <script>
+            let inp =document.querySelector('#d1');
+            let btn =document.querySelector('#d2');
+
+           btn.addEventListener('click',()=>{
+             
+                if(btn.innerText === 'show'){
+
+                    btn.innerText = 'hide';
+
+                    inp.type = 'text';
+                }
+                else{
+
+                   btn.innerText = 'show';
+
+                     inp.type = 'password';
+                 }
+           });
+
+
+
+
+        // function adddata (){
+        //     let name = document.getElementById('name').value;
+        //     let age = document.getElementById('age').value;
+        //     let contact = document.getElementById('contact').value;
+        //     let ans = usermade(name, age, contact);
+        //     console.log(ans);
+
+
+
+           // console.log(name, age, contact);
+
+        //    let obj = {
+        //     name: name,
+        //     age: age,
+        //     contact: contact,
+        //    }
+        //    console.log(obj);
+
+        // }  
+        // function usermade(name, age, contact) {
+        //     return {
+        //         name: name,
+        //         age: age,
+        //         contact: contact
+        //     }
+        // }
+    </script>
+</body>
+</html>

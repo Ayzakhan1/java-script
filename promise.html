@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //     a = 10;
+
+
+
+    //  const delay = new Promise((resolve, reject)=>{
+    //          setInterval(()=>{
+    //             b = 20;
+    //             resolve(b)
+    //          }, 1000);
+    //  })
+
+
+    //  delay.then((b)=>{
+    //     console.log(a + b)
+    //  }
+        
+    //  );
+
+    const prm = async()=>{
+        let a = 10;
+         
+        let b;
+        await new Promise((resolve, reject) => {
+            setInterval(()=>{
+                b = 15;
+                resolve(b)
+            }, 1000);
+
+        })
+        
+        console.log(a +b);
+        
+        
+    }
+    prm();
+
+    const Now =async (resolve)=>{
+        const response = await fetch('https://dummyjson.com/products');
+
+        console.log(response);
+    };
+
+
+    Now();
+
+    </script>
+</body>
+</html>

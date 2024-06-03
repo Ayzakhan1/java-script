@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        #reset{
+              display: none;
+        }
+        #stop{
+            display: none;
+
+        }
+        #snooze{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="time" id="usertime">
+    <button id="setalarm">Set Alarm</button>
+    <button id="reset">Reset</button>
+    <button id="stop">Stop</button>
+    <button id="snooze">Snooz Alarm</button>
+    <img src="images/" alt="">
+    <script>
+        const setalarm = document.querySelector('#setalarm');
+        const usertime = document.querySelector('#usertime');
+        const reset = document.querySelector('#reset');
+        const stop = document.querySelector('#stop');
+        const snoozeAlarm = document.querySelector('#snooze');
+
+        const audio = new Audio('audio1.mp3');
+
+        const playAlarm = ()=>{
+
+            audio.loop = true;
+            audio.play();
+
+            stop.style.display = 'block';
+            reset.style.display = 'none';
+            
+        }
+           let stopalarm;
+        setalarm.addEventListener('click', ()=>{
+            let alarmTime = usertime.value;
+
+            const currentdate = new Date();
+
+            const alarmZone = new Date(currentdate.toDateString() + ' ' + alarmTime);
+
+            const diff = alarmZone - currentdate;
+             
+             reset.style.display = 'block';
+             setalarm.style.display = 'none';
+             usertime.style.display = 'none';
+             snoozeAlarm.style.display = 'inline-block';
+             
+             stopalarm  = setTimeout(playAlarm , diff);
+
+
+        });
+        reset.addEventListener('click', ()=>{
+               clearTimeout(stopalarm);
+               
+               usertime.value = ' ';
+               reset.style.display = 'none';
+             setalarm.style.display = 'block';
+             usertime.style.display = 'block';
+        });
+        stop.addEventListener('click', ()=>{
+            audio.pause();
+            audio.currentTime = 0;
+            usertime.value = ' ';
+
+            reset.style.display = 'none';
+             setalarm.style.display = 'block';
+             usertime.style.display = 'block';
+             stop.style.display = 'none';
+             snoozeAlarm.style.display = 'none';
+
+        });
+        snoozeAlarm.addEventListener('click', ()=>{
+           let snoozeTime = Number(prompt('add number in time'));
+           snoozeTime *= 1000;
+
+           audio.pause();
+            audio.currentTime = 0;
+
+            stopalarm  = setTimeout(playAlarm , snoozeTime);
+
+        });
+
+    </script>
+</body>
+</html>

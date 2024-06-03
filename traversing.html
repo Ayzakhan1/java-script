@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        div{
+            width: 200px;
+            margin: 200px auto;
+            border:2px double red;
+        }
+        div > ul{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   <div>
+    <ul>
+        <li>hello 1</li>
+        <li>hello 2</li>
+        <li>hello 3</li>
+        <li>hello 4</li>
+        <li>hello 5</li>
+        <li>hello 6</li>
+        <li>hello 7</li>
+        <li>hello 8</li>
+    </ul>
+   </div>
+   <script>
+     let theLi = document.querySelector('ul > li:nth-child(2)');
+
+     console.log(theLi);
+     let next = theLi.nextElementSibling;
+     let previous = theLi.previousElementSibling;
+     let parent = theLi.parentNode;
+     let childs = parent.childNodes;
+     let children = parent.children;
+     let first = parent.firstElementchild;
+     let last = parent.lastElementchild;
+
+     console.log(first , last);
+   </script>
+</body>
+</html>

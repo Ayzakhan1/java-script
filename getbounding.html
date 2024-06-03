@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section{
+            height: 80vh;
+            width: 100%;
+            border: 10px solid rgb(20, 46, 56);
+        }
+        #thissection{
+            display: grid;
+            place-items: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section id="thissection">
+        <h1>hello 1</h1>
+        <h1>hello 2</h1> 
+    </section>
+    <section></section>
+    <section></section>
+    <section></section>
+
+    <script>
+          const section = document.querySelector('#thissection');
+          const content = document.querySelectorAll('h1');
+
+
+          const wheight = window.innerHeight;
+
+          window.addEventListener('scroll', ()=>{
+             
+            const distance = section.getBoundingClientRect().top;
+
+            if(distance < (wheight/2)){
+               
+                content[0].style.transform = `translate(${-distance}px)`
+                content[1].style.transform = `translate(${distance}px)`
+            }
+          });
+    </script>
+</body>
+</html>

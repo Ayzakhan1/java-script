@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            width: 1000px;
+            margin: auto;
+            font-size: 20px;
+            border-radius: 5px;
+            border: 4px double black;
+
+        }
+        .active{
+            background-color: black;
+            color: white;
+        }
+        .btns{
+            width: 500px;
+            margin: 100px auto;
+        }
+        .btns button{
+            background-color: skyblue;
+            color: black;
+            padding: 10px 20px;
+            margin-left:30px ;
+            border-radius: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam expedita, unde quo accusamus similique, quam explicabo quaerat dolorem inventore sequi alias quis voluptatum laborum eveniet necessitatibus neque placeat sint. Alias Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit eum voluptas velit alias iusto eveniet sapiente id, quasi laudantium repellat, repellendus ut architecto delectus tempora distinctio commodi officiis ea blanditiis.
+    </div>
+
+  <div class="btns">
+    <button class="add_class">add Class</button>
+    <button class="add_remove">Add Remove</button>
+    <button class="add_toggle">Toggle</button>
+  </div>
+
+    <script>
+        const main = document.querySelector('.main');
+        const addbtn = document.querySelector('.add_class');
+        const removebtn = document.querySelector('.add_remove');
+        const togglebtn = document.querySelector('.add_toggle');
+
+       
+        addbtn.addEventListener('click',()=>{
+           main.classList.add('active');
+        })
+         
+        removebtn.addEventListener('click',()=>{
+           main.classList.remove('active');
+        })
+
+        togglebtn.addEventListener('click',()=>{
+           main.classList.toggle('active');
+        })
+    </script>
+</body>
+</html>

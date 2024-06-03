@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            transition :1s;
+        }
+        ul li{
+            padding: 10px;
+            background-color: rgb(200, 121, 200);
+            color: rgb(235, 196, 149);
+            margin: 20px;
+            width:  300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" id="d1"></div>
+    <ul>
+        <li>hello 1</li>
+        <li>hello 2</li>
+        <li>hello 3</li>
+        <li>hello 4</li>
+        <li>hello 5</li>
+        <li>hello 6</li>
+        <li>hello 7</li>
+        <li>hello 8</li>
+        <li>hello 9</li>
+        <li>hello 10</li>
+    </ul>
+    <script>
+        let maindiv = document.getElementById('d1');
+        let alllis = document.querySelectorAll('li');
+
+       let fun=()=>{
+            console.log('hello');
+        };
+    maindiv.addEventListener( 'click', fun);
+    maindiv.addEventListener('dblclick', ()=>{
+        maindiv.style.height = '400px';
+    });
+    maindiv.addEventListener('mouseenter', ()=>{
+        maindiv.style.width ='500px';
+        maindiv.style.backgroundColor = 'yellow';
+    });
+    maindiv.addEventListener('mouseleave', ()=>{
+        maindiv.style.width ='200px';
+        maindiv.style.backgroundColor = 'red';
+    });
+
+    alllis.forEach((x)=>{
+        x.addEventListener('click',()=>{
+            console.log('clicked');
+        });
+    })
+   
+    </script>
+</body>
+</html>

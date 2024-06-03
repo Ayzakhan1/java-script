@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section{
+            height: 80vh;
+            width: 100%;
+            border: 10px solid skyblue;
+        }
+        #thissection{
+            display: grid;
+            place-items: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        #thissection h1:first-child{
+            -webkit-text-stroke: 1px black;
+            color: pink;
+            transition: 2s;
+            transform: translate(-1000px);
+        }
+        #thissection h1:last-child{
+            -webkit-text-stroke: 1px black;
+            color: pink;
+            transition: 2s;
+            transform: translate(1000px);
+        }
+    </style>
+</head>
+<body>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section id="thissection">
+        <h1>HEADING 1</h1>
+        <h1>HEADING 2</h1> 
+    </section>
+    <section></section>
+    <section></section>
+    <section></section>
+
+
+
+    <script>
+        const section = document.querySelector('#thissection');
+        const heading = document.querySelectorAll('#thissection h1');
+        
+        const distance = section.offsetTop;
+
+
+        const active = ()=>{
+            console.log('reached');
+        }
+
+        window.addEventListener('scroll', ()=>{
+              
+
+          
+           const scrolvalue = window.pageYOffset;
+            
+           const windowH = window.innerHeight;
+
+           const newH = distance - (windowH / 2);
+            //  console.log(distance, scrolvalue);
+             if(scrolvalue > newH){
+                
+              heading.forEach((head)=>{
+                
+                head.style.transform = 'translate(0)'
+
+              })
+
+            }
+        });
+
+
+    </script>
+</body>
+</html>

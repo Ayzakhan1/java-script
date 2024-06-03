@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(33, 206, 206);
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+        .digitalClock{
+            border: 2px double rgb(230, 226, 226);
+            background-color: rgb(5, 5, 5);
+            padding: 20px 30px;
+            text-align: center;
+            color: white;
+        }
+        .time{
+            font-size: 60px;
+            padding: 10px 0;
+        }
+        .date{
+             font-size: 30px;
+             font-weight: bold;
+             padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="digitalClock">
+        <div class="time">
+            00 : 00 : 00 : 00
+        </div>
+        <div class="date">
+            00
+        </div>
+    </div>
+    <script>
+        const timediv = document.querySelector('.time');
+        const datediv = document.querySelector('.date');
+
+        const starttime = ()=>{
+             
+          let  current = new Date();
+          let  date = current.toDateString();
+          let  hours = current.getHours();
+          let  minutes = current.getMinutes();
+          let  seconds = current.getSeconds();
+          let AmPm = (hours >= 12) ? 'PM' : "AM";
+
+          hours = (hours > 12) ? hours - 12 : hours;
+          hours = ( hours < 10) ?  "0" + hours : hours;
+          minutes = ( minutes < 10) ?  "0" + minutes : minutes;
+          seconds = ( seconds < 10) ?  "0" + seconds : seconds;
+
+
+
+           datediv.innerText = date;
+           timediv.innerText = `${hours} : ${minutes} : ${seconds} :${AmPm}`
+
+        }
+        
+        setInterval(starttime);
+    </script>
+</body>
+</html>

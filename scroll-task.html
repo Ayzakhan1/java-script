@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        section{
+            height: 80vh;
+            width: 100%;
+            border: 10px solid rgb(20, 46, 56);
+        }
+        #thissection{
+            display: grid;
+            place-items: center;
+            font-size: 40px;
+            font-weight: bold;
+        
+        }
+        .achivement_section{
+max-width: 100%;
+background-color:rgb(21, 94, 209) ;
+}
+.achivement_section_inner{
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 0;
+
+    text-align: center;
+}
+.achivement_section h3{
+    color: white;
+}
+.achivement_section h2{
+    color: white;
+}
+.achivement_section h4{
+    padding: 30px 0;
+    color: white;
+    font-size: 20px;
+}
+
+.achivement_sec_icons{
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    padding: 30px 0;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+}
+.achivement_sec_iconsc1{
+    flex-basis: 15%;
+
+}
+.achivement_sec_iconsc1 .achivement_sec_iconsc1img1 i{
+    font-size: 80px;
+}
+.achivement_sec_iconsc1 .achivement_sec_iconsc1text h3{
+    font-size: 22px;
+}
+    </style>
+</head>
+<body>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section id="thissection">
+        <div class="achivement_section">
+            <div class="achivement_section_inner">
+               <h2> <i class="fa-solid fa-location-dot"></i> OUR ACHIEVEMENT</h2>
+               <h4>Our Achievements , Which Makes Us The Most Preferable Moving Brand</h4>
+               
+            </div>
+            <div class="achivement_sec_icons">
+                <div class="achivement_sec_iconsc1">
+                    <div class="achivement_sec_iconsc1img1">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div> <br>
+                    <div class="achivement_sec_iconsc1text">
+                        <h2 id="first" data-target="8">0</h2> <br>
+                        <h3>+ Years Of <br>
+                             Experience</h3>
+                    </div>
+                </div>
+                <div class="achivement_sec_iconsc1">
+                    <div class="achivement_sec_iconsc1img1">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div> <br>
+                    <div class="achivement_sec_iconsc1text">
+                        <h2 id="second">0</h2> <br>
+                        <h3>Offices Relocated</h3>
+                    </div>
+                </div>
+                <div class="achivement_sec_iconsc1">
+                    <div class="achivement_sec_iconsc1img1">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div> <br>
+                    <div class="achivement_sec_iconsc1text">
+                        <h2 id="third">0</h2> <br>
+                        <h3>Four Wheelers <br> Relocated</h3>
+                    </div>
+                </div>
+                <div class="achivement_sec_iconsc1">
+                    <div class="achivement_sec_iconsc1img1">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div> <br>
+                    <div class="achivement_sec_iconsc1text">
+                        <h2 id="fourth">0</h2> <br>
+                        <h3>Two Wheelers <br>Relocated</h3>
+                    </div>
+                </div>
+                <div class="achivement_sec_iconsc1">
+                    <div class="achivement_sec_iconsc1img1">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div> <br>
+                    <div class="achivement_sec_iconsc1text">
+                        <h2 id="fifth">0</h2> <br>
+                        <h3>Happy Customers
+                            </h3>
+                    </div>
+                </div>
+                <div class="achivement_sec_iconsc1">
+                    <div class="achivement_sec_iconsc1img1">
+                        <i class="fa-regular fa-face-smile"></i>
+                    </div> <br>
+                    <div class="achivement_sec_iconsc1text">
+                        <h2 id="sixth">0</h2> <br>
+                        <h3>Homes Relocated</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section></section>
+    <section></section>
+    <section></section>
+  
+
+    <script>
+        const col1 = document.querySelector('#first');
+        const col2 = document.querySelector('#second');
+        const col3 = document.querySelector('#third');
+        const col4 = document.querySelector('#fourth');
+        const col5 = document.querySelector('#fifth');
+        const col6 = document.querySelector('#sixthy');
+        const maindiv = document.querySelector('.achivement_sec_icons');
+       
+
+        const windowH = window.innerHeight;
+      
+        let allIntervals = ()=>{
+            i = 0;
+            const one1 = ()=>{
+               
+                col1.innerText = i;
+                i++;
+
+
+                if(i == 9){
+                clearInterval(start);
+            }
+            
+            };
+           let start = setInterval(one1, 100);
+
+ 
+           j = 0;
+            const Two = ()=>{
+               
+                col2.innerText = j;
+                j += 100;
+
+
+                if(j >= 8595){
+                clearInterval(twoStart);
+            }
+            
+            };
+           let twoStart = setInterval(Two,0.00);
+
+
+
+           
+           k = 0;
+            const Three = ()=>{
+               
+                col3.innerText = k;
+                k++;
+
+
+                if(k == 282){
+                clearInterval(threeStart);
+            }
+            
+            };
+           let threeStart = setInterval(Three,0.001);
+            
+        
+        }
+
+       window.addEventListener('scroll',()=>{
+            const distance = maindiv.getBoundingClientRect().top;
+        
+
+          
+          if(distance < (windowH/2)){
+            allIntervals();
+
+            allIntervals = ()=>{};
+            };
+        
+           
+       });
+  </script>
+</body>
+</html>

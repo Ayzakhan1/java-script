@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // for( let i= 2; i <= 10; i++){
+
+        //     for( let j= 1; j <= 10; j++){
+        //         document.write(j * i + '-')
+        //     }
+
+        //     document.write('<br/>')
+        // }
+        //triangle star
+        // let rows= 6;
+         
+        // for(let i = 1; i <= rows; i++){
+
+        // for(j = 1; j <= rows-i; j++){
+        //     document.write('&nbsp&nbsp')
+            
+        // }
+        // for( k = 1; k <=(2 * i) -1;k++){
+        //     document.write('*')
+        // }
+        // document.write('<br/> ')
+        // }
+        // for(let i = rows-1; i >= 1; i--){
+
+        //     for(let j = 1; j <= rows - i; j++){
+        //         document.write('&nbsp;&nbsp;');
+        //     }
+        //     for(let k = 1; k <= (2 * i) -1; k++){
+        //         document.write('*');
+        //     }
+        //          document.write('<br/>')
+        // }
+        // let rows=6;
+
+        // for( let i = 1; i <= rows; i++){
+
+        //     for(let j = 1; j <= rows + 2; j++){
+        //         if(i === 1 || i === rows || j === 1 || j === rows + 2 ){
+        //             document.write('*')
+        //         }
+        //         else{ document.write('&nbsp;&nbsp;')}
+        //     }
+        //       document.write('<br/>')
+        // }
+        
+        let rows = 5;
+
+        for( let i = 1; i <= rows; i++){
+
+            for( let j = 1; j <= i * 2 -1; j++){
+                document.write('*');
+            }
+            document.write('<br/>');
+        }
+        for( let i = rows -1; i >= 1; i--){
+            for( let j = 1; j <= 2 * i -1; j++){
+                document.write('*')
+            }
+            document.write('<br/>')
+        }
+    </script>
+</body>
+</html>

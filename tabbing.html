@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .tab{
+            width: 1000px;
+            margin: auto;
+            box-shadow: 0 0 6px 2px lightgray;
+        }
+        .tab_content{
+            display: none;
+        }
+        .tab_head{
+            padding: 20px 10px 10px 0;
+            border-bottom: 1px solid lightblue;
+        }
+        .tab_head button{
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border-radius: 5px 5px 0 0 ;
+            margin-left: 10px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        .tab_body{
+            height: 200px;
+            font-size: 15px;
+            font-weight: bold;
+            display: grid;
+            place-items: center;
+        }
+        .activetab{
+            background-color: white !important;
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <div class="tab_head">
+            <button class="activetab">TAB 1</button>
+            <button>TAB 2</button>
+            <button>TAB 3</button>
+            <button>TAB 4</button>
+            <button>TAB 5</button>
+            <button>TAB 6</button>
+        </div>
+        <div class="tab_body">
+           contant of tab 1
+        </div>
+        <div class="tab_content">
+            <div>contant of tab 1</div>
+            <div>contant of tab 2</div>
+            <div>contant of tab 3</div>
+            <div>contant of tab 4</div>
+            <div>contant of tab 5</div>
+            <div>contant of tab 6</div>
+        </div>
+    </div>
+    <script>
+        const Allbtns = document.querySelectorAll('.tab_head button');
+        const content = document.querySelectorAll('.tab_content > div');
+        const body = document.querySelector('.tab_body');
+        Allbtns.forEach((btn,btnIN)=>{      
+            
+           
+          
+            btn.addEventListener('click', ()=>{
+                     body.innerHTML = content[btnIN].innerText;
+                     
+                   
+
+                Allbtns.forEach((btns)=>{  
+                    btns.classList.remove('activetab');
+                });
+              btn.classList.add('activetab');
+              
+            });
+
+            
+           
+        });                     
+    </script>
+</body>
+</html>

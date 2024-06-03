@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+        .container{
+            text-align: center;
+        }
+        .container h1 {
+            color: rgb(131, 31, 31);
+            font-size: 50px;
+            margin: 80px 0;
+          
+        }
+        .main{
+            border: 2px solid  rgb(15, 15, 100);
+           
+        }   
+        .user{
+            border: 1px solid rgb(15, 15, 100);
+            margin: 10px;
+            padding: 10px;
+            background-color: rgb(255, 255, 255);
+            
+        }
+        .user input{
+            width: 500px;
+            height: 35px;
+            padding: 7px;
+            color: rgb(12, 12, 134);
+            border: 2px solid rgb(12, 12, 134);
+            border-radius: 7px;
+            font-weight: bold;
+        }
+        .user button{
+            background:  rgb(15, 15, 100);
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+            color: yellow;
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        .list{
+            margin: auto;
+            
+        }
+        li input{
+             width: 20px;
+        }
+        li{
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            border: 2px solid yellow;
+            border-radius: 5px;
+            width: 320px;
+            margin: 10px auto ;
+            background-color:  rgb(15, 15, 100);
+
+        }
+        li span{
+            color: yellow;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top:5px ;
+        }
+        li button{
+            background-color: yellow;
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+            font-weight:bold ;
+            color:rgb(15, 15, 100);
+        }
+        .inactive span{
+            text-decoration: line-through;
+            color: gray !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grocery List</h1>
+        <div class="main">
+            <div class="user">
+                <input type="text" placeholder="add a list">
+                <button>Add List</button>
+            </div>
+            <ul class="list">
+                <!-- <li>
+                    <input type="checkbox">
+                    <span>task</span>
+                    <button>delete</button>
+
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span>task</span>
+                    <button>delete</button>
+
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+         const btn = document.querySelector('button');
+         const userinp = document.querySelector('.user input[type="text"]');
+         const list = document.querySelector('.list');
+          const taskArr = JSON.parse(localStorage.getItem('storeData')) || [];
+             
+          let lastID = 0 ;
+
+          if(taskArr.length != 0){
+
+            lastID = taskArr[taskArr.length -1 ].id;
+
+          }
+
+         btn.addEventListener('click',()=>{
+        const userval = userinp.value;
+             
+               
+
+            if(userval){
+              
+                const newobj = {
+                    id:++lastID,
+                    task:userval,
+                    status:false,
+                }
+
+              taskArr.push(newobj);
+
+             console.log(taskArr);
+
+            const josnArr = JSON.stringify(taskArr);
+
+            localStorage.setItem('storeData', josnArr);
+            }
+            else{
+
+                alert('Please enter input..');
+            }
+            
+            showData();
+       })
+
+       const showData = () =>{
+
+        const taskArr_add = JSON.parse(localStorage.getItem('storeData')) || [];
+
+
+        list.innerHTML = '';
+
+        taskArr_add.forEach((obj)=>{
+
+            const newli = document.createElement('li');
+            const newinp = document.createElement('input');
+                
+             newinp.type = 'checkbox';
+             newinp.value = obj.id;
+             newinp.addEventListener('click',()=>{
+
+                 if(newinp.checked){
+
+                         newli.classList.add("inactive");
+                          
+
+                       }
+                  else{
+                          
+                         newli.classList.remove("inactive");
+
+                       }
+
+                })
+                   const newSpan = document.createElement('span');
+
+                   newSpan.innerText = obj.task;
+
+                   const newbtn = document.createElement('button');
+
+                   newbtn.innerText = 'Delete';
+
+                      newli.appendChild(newinp);
+                      newli.appendChild(newSpan);
+                      newli.appendChild(newbtn);
+
+                      list.appendChild(newli);
+        })
+       }
+
+       showData();
+         
+    </script>
+
+    <!-- <script>
+       const input = document.querySelectorAll('.list input[type="checkbox"]');
+       const btn = document.querySelector('button');
+       const userinp = document.querySelector('.user input[type="text"]');
+       const list = document.querySelector('.list');
+
+    //    input.forEach((inp)=>{
+             
+    //         inp.addEventListener('click',()=>{
+
+    //             const LI = inp.parentNode;
+
+    //             if(inp.checked){
+
+    //                LI.classList.add("inactive");
+    //                console.log('first')
+    //             }
+    //             else{
+
+    //                 LI.classList.remove("inactive");
+    //             }
+    //         })
+    //    });
+
+      
+
+
+       btn.addEventListener('click',()=>{
+        const userval = userinp.value;
+
+            if(userval){
+
+                const newli = document.createElement('li');
+                const newinp = document.createElement('input');
+                
+                newinp.type = 'checkbox';
+
+                newinp.addEventListener('click',()=>{
+
+                    if(newinp.checked){
+
+                         newli.classList.add("inactive");
+                          
+
+                       }
+                   else{
+                          
+                         newli.classList.remove("inactive");
+
+                       }
+
+                })
+
+                const newSpan = document.createElement('span');
+
+                newSpan.innerText = userval;
+
+                const newbtn = document.createElement('button');
+
+                newbtn.innerText = 'Delete';
+
+                newli.appendChild(newinp);
+                newli.appendChild(newSpan);
+                newli.appendChild(newbtn);
+
+                list.appendChild(newli);
+
+                userval.innerText = ""
+            }
+            else{
+
+                alert('Please enter input..');
+            }
+
+       })
+      
+    </script> -->
+</body>
+</html>

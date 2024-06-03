@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        .d1vp{
+            width: 250px;
+            height: 250px;
+            background-color: red;
+            text-align: center;
+            font-size: 50px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1vp" id="d1">hello</div>
+    <div class="d1vp" id="d2">good</div>
+    <button onclick="clickme()">click Me</button>
+    <script>
+       let thediv = document.getElementById('d1');
+       let d2 = document.getElementById('d2');
+        
+       let clickme = ()=>{
+        let contant = thediv.innerText;
+
+        thediv.innerText = d2.innerText;
+        d2.innerText = contant;
+     }
+
+       
+    //    console.log(txt);
+    // let i = 1;
+    // let clickme = ()=>{
+    //     thediv.innerText = i ; 
+    //     i++;
+    // }
+
+    </script>
+</body>
+</html>
