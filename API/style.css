@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    background-color: rgb(238, 201, 201);
+}
+.container{
+    padding: 10px;
+}
+.container h1{
+    padding: 20px;
+    text-align: center;
+}
+.product_container{
+   display: grid;
+   grid-template-columns: 2fr 6fr;
+  
+}
+/* .product_container div{
+    border: 1px solid black;
+} */
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.card{
+    background-color: whitesmoke;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.card img{
+    width: 100%;
+    height: 100%;
+}
+.card h2{
+    font-size: 19px;
+
+}
+.card p{
+    padding: 10px 0;
+}
+.card div{
+    font-size: 16px;
+    font-weight: 600;
+}
+.card div span:nth-child(2){
+    color: grey;
+    text-decoration: line-through;
+}
+.card div span:nth-child(3){
+    font-size: 17px;
+    font-weight: 500;
+}
+.card div:last-child{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 10px;
+   margin-top: 10px;
+}
+.card div:last-child button{
+    padding: 7px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(76, 146, 173);
+    color: white;
+    font-size: 13px;
+}
+.pagination{
+  text-align: center;
+  padding: 20px 0;
+
+}
+.pagination button{
+   background-color: black;
+   color: white;
+   padding: 10px;
+   margin-left: 10px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.pagination button:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid !important;
+
+}
+.activeBtns{
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid !important;
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+        body{
+            background-color: rgb(199, 247, 247);
+        }
+        .container h1{
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 30px;
+            padding: 20px 0;
+            color: grey;
+
+        }
+        .container > div{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            width: 1170px;
+            margin: auto;
+            gap: 10px;
+        }
+         img{
+            width: 100%;
+         }
+         .recipe_card{
+           background-color: white;
+           position: relative;
+         }
+         .recipe_card h4{
+            padding: 10px 0;
+            text-align: center;
+         }
+         .recipe_card::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.151);
+            transform: scale(0);
+            transition: 0.5s;
+         }
+         .recipe_card:hover::before{
+            transform: scale(1);
+         }
+         .recipe_card::after{
+            content: "Details";
+            color: white;
+            font-size: 28px;
+            font-weight: 600;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: 0.5s;
+            cursor: pointer;
+         }
+         .recipe_card:hover::after{
+            transform:translate(-50%, -50%) scale(1);
+         }
+         .details_model{
+            background-color: whitesmoke;
+            border-radius: 8px;
+            box-shadow:inset 0 0 4px 2px rgba(61, 57, 57, 0.959);
+            width: 60vw;
+            position: fixed;
+            top: -50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.2s;
+            padding: 20px;
+         }
+         .overlay{
+            background-color: rgba(0, 0, 0, 0.301);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+           top: 0;
+           left: 0;
+           display: none;
+         }
+         .details_model > h4{
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: underline;
+           
+         }
+         .details_model  h6{
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: underline;
+            padding: 10px 0;
+         }
+         .details_model > div{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 15px;
+         }
+         .details_model > div > div{
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+         }
+         .details_model ul li {
+            line-height: 30px;
+         }
+         .details_model p{
+            line-height: 30px;
+         }
+         .details_model p span:first-child{
+            font-weight: 700;
+         }
+         .container input{
+            padding: 10px;
+            width: 1170px;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid black;
+            border-radius: 4px;
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipes</h1>
+        <input type="text" placeholder="search">
+        <div>
+            <div class="recipe_card">
+             <div class="thumbnail">
+                <img src="https://cdn.dummyjson.com/recipe-images/1.webp" alt="">
+             </div>
+             <h4>
+                Classic Margherita Pizza
+             </h4>
+            </div>
+        </div>
+    </div>
+     
+    <div class="overlay"></div>
+    <div class="details_model">
+            
+     <h4>Classic Margherita Pizza</h4>
+    <div>
+        <div>
+        <h6>Ingredients</h6>
+        <ul class="ingredients">
+            <li>text_text</li>
+            <li>text_text</li>
+            <li>text_text</li>
+            <li>text_text</li>
+            <li>text_text</li>
+            <li>text_text</li>
+        </ul>
+        <p>
+            <span>Preparation Time :</span>
+            <span>20 min.</span>
+        </p>
+        <p>
+            <span>Cooking Time :</span>
+            <span>15 min.</span>
+        </p>
+        <p>
+            <span>Servings :</span>
+            <span>4</span>
+        </p>
+        <p>
+            <span>Cuisine :</span>
+            <span>Italian</span>
+        </p>
+        <p>
+            <span>MealType :</span>
+            <span>Dinner</span>
+        </p>
+        </div>
+        <div>
+            <h6>Instructions</h6>
+            <ul class="Instructions">
+                <li>jndxkj</li>
+                <li>jndxkj</li>
+                <li>jndxkj</li>
+                <li>jndxkj</li>
+                <li>jndxkj</li>
+                <li>jndxkj</li>
+            </ul>
+    </div>
+     </div>
+    </div>
+
+
+    <script>
+        const url = 'https://dummyjson.com/recipes?limit=50';
+        const card = document.querySelector('.container > div');
+        const overlay = document.querySelector('.overlay');
+        const detailsModel = document.querySelector('.details_model');
+        const ingredients = document.querySelector('.ingredients');
+        const detailsnew = document.querySelectorAll('.details_model > div > div p span:nth-child(2)');
+        const Instructions = document.querySelector('.Instructions');
+        const searchinp = document.querySelector('.container input[type="text"]');
+
+        searchinp.addEventListener('input',async (v)=>{
+             const response = await fetch(`https://dummyjson.com/recipes/search?q=${v.target.value}`);
+             const data = await response.json();
+
+             showData(data);
+        });
+
+        const fatchData = async()=>{
+            const response = await fetch(url);
+            const data = await response.json();
+           
+            showData(data);
+        }
+
+        fatchData();
+
+        const showData = (data)=>{
+            let newData = '';
+           data.recipes.forEach((v)=>{
+            newData += `<div class="recipe_card" onclick = "showdetails(${v.id})">
+             <div class="thumbnail">
+                <img src="${v.image}" alt="">
+             </div>
+             <h4>
+                ${v.name}
+             </h4>
+            </div>`;
+           })
+            card.innerHTML = newData;
+        };
+
+        const showdetails = async(p_id)=>{
+          
+            const response = await fetch(`https://dummyjson.com/recipes/${p_id}`);
+           const actualData = await response.json();
+
+        //    console.log(actualData);
+           
+           let lis = '';
+           actualData.ingredients.forEach((v, i)=>{
+             lis += `<li>${i + 1}. ${v}</li>`;
+           });
+
+           ingredients.innerHTML = lis;
+
+           detailsnew[0].innerHTML = actualData.prepTimeMinutes;
+           detailsnew[1].innerHTML = actualData.cookTimeMinutes;
+           detailsnew[2].innerHTML = actualData.servings;
+           detailsnew[3].innerHTML = actualData.cuisine;
+           detailsnew[4].innerHTML = actualData.mealType;
+
+           let All_Instructions = '';
+           actualData.instructions.forEach((v, i)=>{
+            All_Instructions += `<li>step${i + 1}.${v}</li>`;
+           });
+           
+           Instructions.innerHTML = All_Instructions;
+
+
+            overlay.style.display = 'block';
+            detailsModel.style.top = '50%';
+
+        };
+
+        overlay.addEventListener('click',()=>{
+            overlay.style.display = 'none';
+            detailsModel.style.top = '-50%';
+        })
+    </script>
+</body>
+</html>
